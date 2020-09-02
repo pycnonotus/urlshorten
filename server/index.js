@@ -9,12 +9,24 @@ app.use(helmet());
 app.use(morgan('tiny'));
 app.use(cors());
 app.use(express.json());
+app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-    res.json({
-        message: 'antcut - short url to the size of an ant ',
-    });
-});
+// app.get('/', (req, res) => {
+//     res.json({
+//         message: 'antcut - short url to the size of an ant ',
+//     });
+// });
+// app.get('/url/:id', (req, res) => {
+//     // TODO: redirect to url
+// });
+
+// app.get('/:id', (req, res) => {
+//     // TODO: redirect to url
+// });
+
+// app.post('/url', (req, res) => {
+//     // TODO: create url
+// });
 
 const port = process.env.PORT || 2338;
 
