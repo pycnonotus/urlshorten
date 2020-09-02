@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const db = monk(process.env.MONGODB_URI);
 const urls = db.get('url-short');
-urls.createIndex('name'); // TEMP FIX
+urls.createIndex({ ant: 1 }, { unpipe: true }); // TEMP FIX
 
 const app = express();
 
@@ -36,9 +36,15 @@ const schema = yup.object().shape({
 //     // TODO: redirect to url
 // });
 
-// app.get('/:id', (req, res) => {
-//     // TODO: redirect to url
-// });
+app.get('/:id', async (req, res) => {
+    const { id: ant } = req.params;
+    try {
+        const url = await urls.findOne({ ant });
+        if (url) {
+            res.redirect(url.url);
+        }
+    } catch (err) {}
+});
 
 app.post('/url', async (req, res, next) => {
     console.log(req.body);
