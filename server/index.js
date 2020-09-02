@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const db = monk(process.env.MONGODB_URI);
 const urls = db.get('url-short');
-urls.createIndex({ name: 1 }, { unique: true });
+urls.createIndex('name'); // TEMP FIX
 
 const app = express();
 
@@ -69,7 +69,7 @@ app.post('/url', async (req, res, next) => {
         const created = await urls.insert(newUrl);
         res.json(created);
     } catch (err) {
-        if ((err.message, startsWith('E11000'))) {
+        if (err.message.startsWith('E11000')) {
             err.message = 'ant is already in the nest';
         }
         next(err);
