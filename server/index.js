@@ -8,8 +8,9 @@ const { nanoid } = require('nanoid');
 require('dotenv').config();
 
 const db = monk(process.env.MONGODB_URI);
-const urls = db.get('urls');
+const urls = db.get('url-short');
 urls.createIndex('name');
+urls.createIndex({ name: 1 }, { unique: true });
 
 const app = express();
 
