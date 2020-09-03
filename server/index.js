@@ -42,8 +42,12 @@ app.get('/:id', async (req, res) => {
         const url = await urls.findOne({ ant });
         if (url) {
             res.redirect(url.url);
+        } else {
+            res.redirect(`/?error=${ant} not found`);
         }
-    } catch (err) {}
+    } catch (err) {
+        res.redirect(`/?error=Link not found`);
+    }
 });
 
 app.post('/url', async (req, res, next) => {

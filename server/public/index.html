@@ -10,5 +10,21 @@
         <header>
             <h1>antct , cut ur url to a size of an ant</h1>
         </header>
+        <main>
+            <form id="myForm" onsubmit=" return onSub(event)">
+                <label for="" url url> url </label>
+                <input type="text" name="url" id="url" />
+
+                <label for="ant"> ant </label>
+                <input type="text" id="ant" name="ant" />
+                <button type="submit">make me short as an ant</button>
+            </form>
+            <div></div>
+            <form action="/action_page.php" onsubmit="myFunction()">
+                Enter name: <input type="text" name="fname" />
+                <input type="submit" value="Submit" />
+            </form>
+        </main>
     </body>
+    <script src="app.js"></script>
 </html>
